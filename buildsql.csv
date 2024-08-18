@@ -1,0 +1,12 @@
+Schema Name,TableName,Column Name,Column Cardinality,Table Cardinality,Data type,Length,Precision,# Nulls,Distribution,Nullable,Dim key,Is Foreign Key
+,,,,,,,,,,,,
+schema1,testdf,column41,1234,1000099,varchar,50,10, ,,,,
+schema1,testdf,column11,365,1000099,date,,, ,,,,
+schema1,testdf,column21,1234,1000099,timestamp,,, ,,,,
+schema1,testdf,column31,1234,1000099,varchar,10,, ,,,,
+schema1,testdf,column41,1234,1000099,char,10,, ,,,,
+schema1,testt1,column1,1234,1000099,char,10,, ,,,,
+schema1,testt1,column2,1234,1000099,char,10,, ,,,,
+schema1,testt1,column3,1234,1000099,bigint,10,, ,,,,
+schema1,testt1,column4,1234,1000099,integer,10,, ,,,,
+schema1,testt1,column5,1234,1000099,varchar,128,16, ,,,,

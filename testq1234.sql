@@ -11,7 +11,7 @@ SELECT
    (date_part(epoch_second, current_date) + (uniform(1, 1234, random(10004))))::timestamp as column21,
    randstr(uniform(1,10, random(10005)),uniform(1,1234,random(10005)))::varchar(10) as column31,
    rpad(uniform(1, 1234, random(10006))::varchar,10, 'abcdefghifklmnopqrstuvwxyz')::char(10) as column41
-from table(generator(rowcount => 10000));
+from table(generator(rowcount => 1000099));
  
 CREATE or REPLACE TABLE testt1
 AS
@@ -21,5 +21,5 @@ SELECT
    uniform(1,1234 , random(10009))::bigint as column3,
    uniform(1,1234 , random(10010))::integer as column4,
    randstr(uniform(16,128, random(10011)),uniform(1,1234,random(10011)))::varchar(128) as column5
-from table(generator(rowcount => 10000));
+from table(generator(rowcount => 1000099));
  
