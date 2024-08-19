@@ -1,3 +1,11 @@
+import os
+import snowflake.snowpark.functions
+from snowflake.snowpark import Session
+from snowflake.snowpark.functions import col
+from snowflake.snowpark.types import IntegerType, StringType, StructField, StructType, DateType
+
+
+
 import sys
 import os, glob, errno
 import getpass
@@ -5,22 +13,6 @@ import argparse
 #import snowflake.connector
 import re
 import csv
-
-import os
-import snowflake.snowpark.functions
-from snowflake.snowpark import Session
-from snowflake.snowpark.functions import col
-from snowflake.snowpark.types import IntegerType, StringType, StructField, StructType, DateType
-
-connection_parameters = {"account":"sr20234.ap-southeast-2",
-"user":"rence",
-"password": "Qwertyuiop1234567890",
-"role":"ACCOUNTADMIN",
-"warehouse":"COMPUTE_WH",
-"database":"DEMO_DB",
-"schema":"PUBLIC"
-}
-
 
 #Verbose processing
 def show_verbose(verbose, text_to_print):
@@ -176,6 +168,8 @@ def print_ddl(database_objects, outputfile):
   for db in sorted(database_objects.keys()):    #Database Name
     #Now loop through the new obj_hash to print out the ddl
     printer('-------------------------------------', of)
+    printer('-- Generating Database: ' + str(db), of)
+    printer('-------------------------------------', of)
     schema_obj=database_objects[db]
     for schema in schema_obj:
       printer('CREATE TRANSIENT SCHEMA IF NOT EXISTS ' + str(schema) + ' DATA_RETENTION_TIME_IN_DAYS=0;', of)
@@ -237,6 +231,34 @@ def main():
   print_ddl(db_objects, args.sqlfile)
 
   return
-
 if __name__ == "__main__":
   main()
+
+
+ACCOUNT = 'sr20234.ap-southeast-2'
+USER = 'rence'
+PASSWORD = 'Qwertyuiop1234567890'
+WAREHOUSE = 'COMPUTE_WH'
+DATABASE = 'DEMO_DB'
+SCHEMA = 'Public'
+# Create a Snowflake connection
+conn = snowflake.connector.connect(
+    user=USER,
+    password=PASSWORD,
+    account=ACCOUNT,
+    warehouse=WAREHOUSE,
+    database=DATABASE,
+    schema=SCHEMA
+)
+connection_parameters = {"account":"sr20234.ap-southeast-2",
+"user":"rence",
+"password": "Qwertyuiop1234567890",
+"role":"ACCOUNTADMIN",
+"warehouse":"COMPUTE_WH",
+"database":"DEMO_DB",
+"schema":"PUBLIC"
+}
+
+test_session = Session.builder.configs(connection_parameters).create()
+
+print(test_session.sql("select current_warehouse(), current_database(), current_schema()").collect())

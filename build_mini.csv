@@ -1,0 +1,3 @@
+Schema Name,TableName,Column Name,Column Cardinality,Table Cardinality,Data type,Length,Precision,# Nulls,Distribution,Nullable,Dim key,Is Foreign Key
+,,,,,,,,,,,,
+schema1,testdfwwa,column41,1234,1000099,varchar,50,10, ,,,,
